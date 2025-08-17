@@ -151,6 +151,11 @@ code {
   }
 }
 
+.fntlight {
+  font-weight: 200;
+  font-size: small;
+}
+
 @media (max-width: 720px) {
   .text {
     font-size: 20px;
