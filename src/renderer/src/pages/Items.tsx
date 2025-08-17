@@ -1,7 +1,7 @@
 import Header from '@renderer/components/Header'
 import { FilterIcon, IcPlus, IcSearch, MoreVerticalIcon } from '@renderer/components/Icons'
 import FullscreenToggle from '@renderer/components/toggleFullScreen'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 
 // ===================== TypeScript Types =====================
 export type Unit = 'PCS' | 'KG' | 'LTR' | 'BOX'
@@ -32,6 +32,66 @@ const items: Partial<Item>[] = [
 ]
 // ===================== Main Component =====================
 const ItemsPage: React.FC = () => {
+  type Transaction = {
+    date: string
+    invoice: string
+    party: string
+    transaction: string
+    payment: string
+    amount: number
+    balance: number
+  }
+
+  let bgc: string = 'bg-gray-200'
+
+  const [transactions] = useState<Transaction[]>([
+    {
+      date: '2025-08-01',
+      invoice: 'INV-001',
+      party: 'Sharma Traders',
+      transaction: 'Sale',
+      payment: 'Cash',
+      amount: 1200,
+      balance: 1200
+    },
+    {
+      date: '2025-08-02',
+      invoice: 'INV-002',
+      party: 'Gupta Electronics',
+      transaction: 'Purchase',
+      payment: 'Bank Transfer',
+      amount: 8500,
+      balance: -7300
+    },
+    {
+      date: '2025-08-03',
+      invoice: 'INV-003',
+      party: 'Mishra Store',
+      transaction: 'Sale',
+      payment: 'UPI',
+      amount: 4200,
+      balance: -3100
+    },
+    {
+      date: '2025-08-04',
+      invoice: 'INV-004',
+      party: 'Verma Distributors',
+      transaction: 'Purchase',
+      payment: 'Cheque',
+      amount: 15000,
+      balance: -18100
+    },
+    {
+      date: '2025-08-05',
+      invoice: 'INV-005',
+      party: 'Agarwal Mart',
+      transaction: 'Sale',
+      payment: 'Cash',
+      amount: 6000,
+      balance: -12100
+    }
+  ])
+
   let itemsBgColor: string = 'bg-white'
   const getBgColor = (): string => {
     if (itemsBgColor == 'bg-white') {
@@ -51,6 +111,7 @@ const ItemsPage: React.FC = () => {
       <div className="pt-3 px-3 bg-gray-50">
         <Header />
       </div>
+
 
       {/* Items Type */}
       <div
@@ -164,7 +225,7 @@ const ItemsPage: React.FC = () => {
           </div>
 
           {/* Remaining height */}
-          <div className="flex-1 bg-white overflow-auto p-2" ref={containerRef}>
+          <div className="flex-1 bg-white overflow-auto p-2 flex flex-col gap-3" ref={containerRef}>
             <div className="flex justify-between items-center">
               <div className="font-bold" style={{ fontWeight: 500, fontSize: 14 }}>
                 TRANSACTIONS
@@ -182,6 +243,70 @@ const ItemsPage: React.FC = () => {
                 <FullscreenToggle containerRef={containerRef} />
               </div>
             </div>
+
+              <table className="w-full text-sm">
+                <thead className="bg-gray-100 sticky top-0 left-0 z-10 w-full">
+                  <tr>
+                    {[
+                      { name: 'Date', css: '' },
+                      { name: 'Invoice no', css: '' },
+                      { name: 'Party Name', css: '' },
+                      { name: 'Transaction', css: ' hidden md:table-cell' },
+                      { name: 'Payment Type', css: ' hidden md:table-cell' },
+                      { name: 'Amount', css: '' },
+                      { name: 'Balance', css: '' },
+                      { name: 'Actions', css: '' }
+                    ].map((col) => (
+                      <th key={col.name} className={'p-2 text-left' + col.css}>
+                        <div className="flex items-center gap-2">
+                          <FilterIcon /> {col.name}
+                        </div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="text-gray-700">
+                  {transactions.length === 0 ? (
+                    <tr>
+                      <td colSpan={8} className="text-center py-8 text-gray-500">
+                        <div className="flex flex-col items-center">
+                          <span className="text-red-400 text-lg">⚠</span>
+                          <p>No Transaction Found</p>
+                          <small>We could not find any transactions.</small>
+                        </div>
+                      </td>
+                    </tr>
+                  ) : (
+                    transactions.map((t, idx) => {
+
+                       if (bgc === 'bg-white') bgc = 'bg-gray-100'
+                    else bgc = 'bg-white'
+
+                      return (
+                        <tr key={idx} className={bgc + ' hover:bg-blue-200'}>
+                          <td className="p-2">{t.date}</td>
+                          <td className="p-2">{t.invoice}</td>
+                          <td className="p-2 hidden md:table-cell">{t.party}</td>
+                          <td className="p-2 hidden md:table-cell">{t.transaction}</td>
+                          <td className="p-2">{t.payment}</td>
+                          <td className="p-2">₹{t.amount}</td>
+                          <td className="p-2">₹{t.balance}</td>
+                          <td className="p-2">
+                            <div className="flex justify-end gap-3">
+                              <MoreVerticalIcon
+                                color="gray"
+                                onClick={() => {
+                                  alert('Clicked')
+                                }}
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      )
+                    })
+                  )}
+                </tbody>
+              </table>
 
             <div></div>
 
