@@ -25,7 +25,8 @@ export default tseslint.config(
     rules: {
       ...eslintPluginReactHooks.configs.recommended.rules,
       ...eslintPluginReactRefresh.configs.vite.rules,
-      'react/prop-types': 'off'
+      'react/prop-types': 'off',
+      "no-useless-catch": "off"
     }
   },
   eslintConfigPrettier

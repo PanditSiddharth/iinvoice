@@ -2,6 +2,7 @@ import Header from '@renderer/components/Header'
 import { FilterIcon, IcPlus, IcSearch, MoreVerticalIcon } from '@renderer/components/Icons'
 import FullscreenToggle from '@renderer/components/toggleFullScreen'
 import React, { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 // ===================== TypeScript Types =====================
 export type Unit = 'PCS' | 'KG' | 'LTR' | 'BOX'
@@ -108,10 +109,7 @@ const ItemsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-200 fntlight">
       {/* Header */}
-      <div className="pt-3 px-3 bg-gray-50">
         <Header />
-      </div>
-
 
       {/* Items Type */}
       <div
@@ -167,10 +165,10 @@ const ItemsPage: React.FC = () => {
           <div className="flex justify-between items-center py-2 ">
             <IcSearch className="w-8 bg-gray-200 p-2 rounded-full" />
             <div className="flex items-center">
-              <button className="flex w-28 rounded-lg p-1 bg-orange-400 justify-center items-center text-white">
+              <Link to="/add-items" className="flex w-28 rounded-lg p-1 bg-orange-400 justify-center items-center text-white">
                 <IcPlus className="w-3.5" />
                 Add Item
-              </button>
+              </Link>
               <MoreVerticalIcon className="w-5" />
             </div>
           </div>

@@ -2,7 +2,7 @@ import { IcSearch } from './Icons'
 
 const Header = (): React.JSX.Element => {
   return (
-    <div className="flex justify-between items-center pb-4 px-4 bg-gray-50">
+    <div className="flex justify-between items-center p-4 px-4 bg-gray-50">
       <div className="relative w-1/4 min-w-44">
         <IcSearch className="w-4 h-4 text-gray-600 absolute left-3 top-1/2 -translate-y-1/2" />
         <input

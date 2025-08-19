@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar'
 import { useState } from 'react'
 import SaleInvoices from './pages/SaleInvoices'
 import ItemsPage from './pages/Items'
+import AddItems from './pages/AddItems'
 
 function App(): React.JSX.Element {
   const [isOpen, setOpen] = useState(false)
@@ -56,6 +57,7 @@ function App(): React.JSX.Element {
             <Route path="/about" element={<About />} />
             <Route path="/sale-invoices" element={<SaleInvoices />} />
             <Route path="/items" element={<ItemsPage />} />
+            <Route path="/add-items" element={<AddItems />} />
           </Routes>
         </div>
       </div>
