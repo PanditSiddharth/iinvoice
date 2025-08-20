@@ -1,37 +1,49 @@
 import React, { JSX, useState } from 'react'
 import Header from '@renderer/components/Header'
+import { IcChevron } from '@renderer/components/Icons'
 
-type VyaparInputProps = {
+type InputBoxProps = {
   placeholder: string
   value: string
   onChange: (val: string) => void
   type?: string
+  className?: string
+  style?: React.CSSProperties
 }
 
-const VyaparInput = ({ placeholder, value, onChange, type = 'text' }: VyaparInputProps): JSX.Element => {
+const InputBox = ({
+  placeholder,
+  value,
+  onChange,
+  type = 'text',
+  className = '',
+  style
+}: InputBoxProps): JSX.Element => {
   const [focused, setFocused] = useState(false)
 
   const shouldFloat = focused || value.length > 0
 
   return (
-    <div className="relative w-full">
+    <div className={`relative ${className} `} style={{ ...style }}>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        className={`peer w-full border rounded-md px-3 py-3 focus:outline-none
-          ${focused ? 'border-blue-500' : 'border-gray-300'}
+        className={`peer w-full border rounded-md px-3 py-2 focus:outline-none
+          ${focused ? 'border-blue-500' : 'border-gray-300'} 
         `}
       />
       <label
         className={`
           absolute left-3 pointer-events-none
           transition-all duration-200
-          ${shouldFloat
-            ? '-top-2 text-sm px-1 bg-white text-blue-500'
-            : 'top-3 text-base text-gray-400'}
+          ${
+            shouldFloat
+              ? '-top-2 text-sm px-1 bg-white text-blue-500'
+              : 'top-1.5 text-base text-gray-400'
+          }
         `}
       >
         {placeholder}
@@ -40,18 +52,14 @@ const VyaparInput = ({ placeholder, value, onChange, type = 'text' }: VyaparInpu
   )
 }
 
-
-
 const AddItems = (): React.JSX.Element => {
   const [isService, setIsService] = useState(false)
+  const [isOpenUnit, setIsOpenUnit] = useState(false)
 
   return (
     <div className="text-black fntlight">
       <Header />
-      <div
-        className="flex bg-gray-200 p-2"
-        style={{ height: 'calc(100vh - 64px)' }}
-      >
+      <div className="flex bg-gray-200 p-2" style={{ height: 'calc(100vh - 64px)' }}>
         <div className="flex-1 bg-white py-1 px-2">
           <div className="flex items-center gap-2">
             <p
@@ -78,7 +86,106 @@ const AddItems = (): React.JSX.Element => {
             <p>Service</p>
           </div>
 
-          <VyaparInput placeholder='Hi' type='text' value='' onChange={()=>{}}/>
+          <div
+            style={{
+              marginTop: '8px'
+            }}
+            className="flex gap-4"
+          >
+            <InputBox
+              placeholder="Product Name"
+              type="text"
+              value=""
+              onChange={() => {}}
+              className="w-52"
+            />
+
+            <InputBox
+              placeholder="HSN/SAC Code"
+              type="text"
+              value=""
+              onChange={() => {}}
+              className="w-52"
+            />
+
+            <button
+              className="bg-sky-200 rounded-xl text-blue-700 w-52 relative"
+              onClick={() => {
+                setIsOpenUnit(true)
+              }}
+            >
+              Select unit
+              <div className="absolute  text-center right-1/2 pt-1 pl-3">pcs</div>
+            </button>
+            {isOpenUnit && (
+              <div className="fixed h-screen w-full top-0 right-0 flex justify-center items-center">
+                <div className="absolute w-full bg-gray-700 opacity-45 h-screen"></div>
+                <div className="w-96 bg-white relative">
+                  <div className="p-2 flex justify-between bg-gray-300 items-center">
+                    <p className="text-black" style={{ color: 'black', fontWeight: 600, fontSize: 15 }}>
+                      Select Unit
+                    </p>
+                    <div onClick={() => setIsOpenUnit(false)}>
+                      <IcChevron open={false} className="justify-self-end w-8" />
+                    </div>
+                  </div>
+                  <div className="flex gap-4 p-4 justify-center">
+                    <div className="text-center">
+                       <div className='text-blue-700 pt-3'>Base Unit</div>
+                      <select
+                        name="first-unit"
+                        id=""
+                        className="text-black p-2 border border-gray-400 rounded-lg min-w-40"
+                        style={{ marginTop: '2px' }}
+                      >
+                        <option value="pcs">None</option>
+                        <option value="pcs">Pcs</option>
+                        <option value="pcs">Box</option>
+                        <option value="pcs">Centimeter</option>
+                      </select>
+                    </div>
+
+                    <div className="text-center">
+                      <div className='text-blue-700 pt-3'>Secondary Unit</div>
+                      <select
+                        name="first-unit"
+                        id=""
+                        className="text-black p-2 border border-gray-400 rounded-lg min-w-40"
+                        style={{ marginTop: '2px' }}
+                      >
+                        <option value="pcs">None</option>
+                        <option value="pcs">Pcs</option>
+                        <option value="pcs">Box</option>
+                        <option value="pcs">Centimeter</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className='flex justify-center pb-4 gap-4'>
+                    <div className="text-center">
+                       <div className='text-blue-700 pt-3'>Base Unit</div>
+<input type="number" className='text-black p-2 border border-gray-400 rounded-lg min-w-40' />
+                    </div>
+
+                    <div className="text-center">
+                      <div className='text-blue-700 pt-3'>Secondary Unit</div>
+                      <select
+                        name="first-unit"
+                        id=""
+                        className="text-black p-2 border border-gray-400 rounded-lg min-w-40"
+                        style={{ marginTop: '2px' }}
+                      >
+                        <option value="pcs">None</option>
+                        <option value="pcs">Pcs</option>
+                        <option value="pcs">Box</option>
+                        <option value="pcs">Centimeter</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <h1>Add Item</h1>

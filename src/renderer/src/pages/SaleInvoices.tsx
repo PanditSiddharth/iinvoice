@@ -166,7 +166,7 @@ export default function SaleInvoices(): React.JSX.Element {
   let bgc: string = 'bg-gray-100'
   return (
     <div
-      className="py-4 bg-gray-50 min-h-screen text-black h-screen "
+      className="py-4 bg-gray-50 min-h-screen text-black h-screen fntlight "
       style={{ fontFamily: 'Inter, sans-serif' }}
     >
 {/* Header */}
