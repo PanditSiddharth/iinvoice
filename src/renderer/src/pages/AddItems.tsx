@@ -52,6 +52,44 @@ const InputBox = ({
   )
 }
 
+const SelectBox = ({
+  placeholder,
+  value,
+  onChange,
+  className = '',
+  style
+}: Omit<InputBoxProps, 'type'>): JSX.Element => {
+  const [focused, setFocused] = useState(false)
+
+  const shouldFloat = focused || value.length > 0
+
+  return (
+    <div className={`relative ${className} `} style={{ ...style }}>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        className={`peer w-full border rounded-md px-3 py-2 focus:outline-none
+          ${focused ? 'border-blue-500' : 'border-gray-300'} 
+        `}
+      >
+        <option value="v">Category</option>
+        <option value="v1">Category2</option>
+      </select>
+      <label
+        className={`
+          absolute left-3 pointer-events-none
+          transition-all duration-200 -top-2 text-sm px-1 bg-white
+          ${shouldFloat ? 'text-blue-500' : 'text-gray-400'}
+        `}
+      >
+        {placeholder}
+      </label>
+    </div>
+  )
+}
+
 const AddItems = (): React.JSX.Element => {
   const [isService, setIsService] = useState(false)
   const [isOpenUnit, setIsOpenUnit] = useState(false)
@@ -191,6 +229,9 @@ const AddItems = (): React.JSX.Element => {
                 </div>
               </div>
             )}
+          </div>
+          <div className="py-8">
+            <SelectBox placeholder="Category" value="" onChange={() => {}} className="w-52" />
           </div>
         </div>
       </div>
