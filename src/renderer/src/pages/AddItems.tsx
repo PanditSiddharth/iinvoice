@@ -122,7 +122,10 @@ const AddItems = (): React.JSX.Element => {
                 <div className="absolute w-full bg-gray-700 opacity-45 h-screen"></div>
                 <div className="w-96 bg-white relative">
                   <div className="p-2 flex justify-between bg-gray-300 items-center">
-                    <p className="text-black" style={{ color: 'black', fontWeight: 600, fontSize: 15 }}>
+                    <p
+                      className="text-black"
+                      style={{ color: 'black', fontWeight: 600, fontSize: 15 }}
+                    >
                       Select Unit
                     </p>
                     <div onClick={() => setIsOpenUnit(false)}>
@@ -131,7 +134,7 @@ const AddItems = (): React.JSX.Element => {
                   </div>
                   <div className="flex gap-4 p-4 justify-center">
                     <div className="text-center">
-                       <div className='text-blue-700 pt-3'>Base Unit</div>
+                      <div className="text-blue-700 pt-3">Base Unit</div>
                       <select
                         name="first-unit"
                         id=""
@@ -146,7 +149,7 @@ const AddItems = (): React.JSX.Element => {
                     </div>
 
                     <div className="text-center">
-                      <div className='text-blue-700 pt-3'>Secondary Unit</div>
+                      <div className="text-blue-700 pt-3">Secondary Unit</div>
                       <select
                         name="first-unit"
                         id=""
@@ -161,14 +164,17 @@ const AddItems = (): React.JSX.Element => {
                     </div>
                   </div>
 
-                  <div className='flex justify-center pb-4 gap-4'>
+                  <div className="flex justify-center pb-4 gap-4">
                     <div className="text-center">
-                       <div className='text-blue-700 pt-3'>Base Unit</div>
-<input type="number" className='text-black p-2 border border-gray-400 rounded-lg min-w-40' />
+                      <div className="text-blue-700 pt-3">Base Unit</div>
+                      <input
+                        type="number"
+                        className="text-black p-2 border border-gray-400 rounded-lg min-w-40"
+                      />
                     </div>
 
                     <div className="text-center">
-                      <div className='text-blue-700 pt-3'>Secondary Unit</div>
+                      <div className="text-blue-700 pt-3">Secondary Unit</div>
                       <select
                         name="first-unit"
                         id=""
