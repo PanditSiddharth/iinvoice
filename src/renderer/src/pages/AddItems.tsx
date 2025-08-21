@@ -8,6 +8,7 @@ type InputBoxProps = {
   onChange: (val: string) => void
   type?: string
   className?: string
+  className2?: string
   style?: React.CSSProperties
 }
 
@@ -17,7 +18,8 @@ const InputBox = ({
   onChange,
   type = 'text',
   className = '',
-  style
+  style, 
+  className2 =""
 }: InputBoxProps): JSX.Element => {
   const [focused, setFocused] = useState(false)
 
@@ -31,7 +33,7 @@ const InputBox = ({
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        className={`peer w-full border rounded-md px-3 py-2 focus:outline-none
+        className={`peer w-full border rounded-md px-3 py-2 focus:outline-none ${className2}
           ${focused ? 'border-blue-500' : 'border-gray-300'} 
         `}
       />
@@ -57,6 +59,7 @@ const SelectBox = ({
   value,
   onChange,
   className = '',
+  className2 = '',
   style
 }: Omit<InputBoxProps, 'type'>): JSX.Element => {
   const [focused, setFocused] = useState(false)
@@ -70,7 +73,7 @@ const SelectBox = ({
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        className={`peer w-full border rounded-md px-3 py-2 focus:outline-none
+        className={`peer w-full border rounded-md px-3 py-[9px] focus:outline-none ${className2}
           ${focused ? 'border-blue-500' : 'border-gray-300'} 
         `}
       >
@@ -230,8 +233,63 @@ const AddItems = (): React.JSX.Element => {
               </div>
             )}
           </div>
-          <div className="py-8">
+
+          {/* Second Input Row */}
+          <div className="py-8 flex gap-4">
             <SelectBox placeholder="Category" value="" onChange={() => {}} className="w-52" />
+                      <InputBox
+              placeholder="Item Code"
+              type="text"
+              value=""
+              onChange={() => {}}
+              className="w-52"
+            />
+            <div className='flex items-center gap-4 text-gray-700'>
+              <input type='checkbox' />
+              Batch Tracking
+            </div>
+                        <div className='flex items-center gap-4 text-gray-700'>
+              <input type='checkbox' />
+              Serial No. Tracking
+            </div>
+          </div>
+
+          <div className='border-b flex max-w-full text-gray-600 border-gray-300'>
+            <div 
+            className='p-2 border-b text-center border-red-800 text-red-800 w-28'
+            style={{
+              fontSize: 15
+            }}>
+              Pricing
+            </div>
+                        <div 
+            className='p-2 text-center w-28 hover:cursor-pointer'
+            style={{
+              fontSize: 15
+            }}>
+              Stock
+            </div>
+            <div 
+            className='p-2 text-center w-28 hover:cursor-pointer'
+            style={{
+              fontSize: 15
+            }}>
+              Item Image
+            </div>
+          </div>
+
+          <div className='flex p-4'>
+                      <InputBox
+              placeholder="Item Code"
+              type="text"
+              value=""
+              onChange={() => {}}
+              className="w-28 "
+              className2='rounded-none rounded-l-lg'
+            />
+            <SelectBox placeholder="" value="" onChange={() => {}} className="w-28" 
+             className2='rounded-none rounded-r-lg'
+            />
           </div>
         </div>
       </div>
