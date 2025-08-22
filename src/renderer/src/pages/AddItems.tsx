@@ -18,8 +18,8 @@ const InputBox = ({
   onChange,
   type = 'text',
   className = '',
-  style, 
-  className2 =""
+  style,
+  className2 = ""
 }: InputBoxProps): JSX.Element => {
   const [focused, setFocused] = useState(false)
 
@@ -41,10 +41,9 @@ const InputBox = ({
         className={`
           absolute left-3 pointer-events-none
           transition-all duration-200
-          ${
-            shouldFloat
-              ? '-top-2 text-sm px-1 bg-white text-blue-500'
-              : 'top-1.5 text-base text-gray-400'
+          ${shouldFloat
+            ? '-top-2 text-sm px-1 bg-white text-blue-500'
+            : 'top-1.5 text-base text-gray-400'
           }
         `}
       >
@@ -137,7 +136,7 @@ const AddItems = (): React.JSX.Element => {
               placeholder="Product Name"
               type="text"
               value=""
-              onChange={() => {}}
+              onChange={() => { }}
               className="w-52"
             />
 
@@ -145,7 +144,7 @@ const AddItems = (): React.JSX.Element => {
               placeholder="HSN/SAC Code"
               type="text"
               value=""
-              onChange={() => {}}
+              onChange={() => { }}
               className="w-52"
             />
 
@@ -236,59 +235,78 @@ const AddItems = (): React.JSX.Element => {
 
           {/* Second Input Row */}
           <div className="py-8 flex gap-4">
-            <SelectBox placeholder="Category" value="" onChange={() => {}} className="w-52" />
-                      <InputBox
+            <SelectBox placeholder="Category" value="" onChange={() => { }} className="w-52" />
+            <InputBox
               placeholder="Item Code"
               type="text"
               value=""
-              onChange={() => {}}
+              onChange={() => { }}
               className="w-52"
             />
             <div className='flex items-center gap-4 text-gray-700'>
               <input type='checkbox' />
               Batch Tracking
             </div>
-                        <div className='flex items-center gap-4 text-gray-700'>
+            <div className='flex items-center gap-4 text-gray-700'>
               <input type='checkbox' />
               Serial No. Tracking
             </div>
           </div>
 
           <div className='border-b flex max-w-full text-gray-600 border-gray-300'>
-            <div 
-            className='p-2 border-b text-center border-red-800 text-red-800 w-28'
-            style={{
-              fontSize: 15
-            }}>
+            <div
+              className='p-2 border-b text-center border-red-800 text-red-800 w-28'
+              style={{
+                fontSize: 15
+              }}>
               Pricing
             </div>
-                        <div 
-            className='p-2 text-center w-28 hover:cursor-pointer'
-            style={{
-              fontSize: 15
-            }}>
+            <div
+              className='p-2 text-center w-28 hover:cursor-pointer'
+              style={{
+                fontSize: 15
+              }}>
               Stock
             </div>
-            <div 
-            className='p-2 text-center w-28 hover:cursor-pointer'
-            style={{
-              fontSize: 15
-            }}>
+            <div
+              className='p-2 text-center w-28 hover:cursor-pointer'
+              style={{
+                fontSize: 15
+              }}>
               Item Image
             </div>
           </div>
 
-          <div className='flex p-4'>
-                      <InputBox
+          <div className='p-6 bg-gray-100 rounded-xl flex flex-col gap-6' style={{
+            marginTop: "20px"
+          }}>
+            <div style={{
+              fontWeight: 600,
+              fontSize: "16px"
+            }}>
+              MRP
+            </div>
+            <InputBox
+              placeholder="MRP"
+              type="text"
+              value=""
+              onChange={() => { }}
+              className="w-52 "
+              className2=''
+            />
+          </div>
+
+          <div className='flex pt-4'>
+            <InputBox
               placeholder="Item Code"
               type="text"
               value=""
-              onChange={() => {}}
+              onChange={() => { }}
               className="w-28 "
               className2='rounded-none rounded-l-lg'
             />
-            <SelectBox placeholder="" value="" onChange={() => {}} className="w-28" 
-             className2='rounded-none rounded-r-lg'
+            <SelectBox placeholder="" value="" onChange={() => { }} className="w-28"
+              className2='rounded-none rounded-r-lg'
             />
           </div>
         </div>
